@@ -2,7 +2,8 @@
 
 **MICT-PIPE-001** — Session S01: Deterministic Core
 
-The pipeline's decisive logic — the 0–100 composite, the tier selection, the dedupe key — is pure code. Built first, it becomes the fixed point the rest of the system orbits: scoring and routing are already correct by the time the orchestration spine arrives in S02 to call them.
+The pipeline's decisive logic, the 0–100 composite, the tier selection, the dedupe key,
+is pure code. Built first, it becomes the fixed point the rest of the system orbits: scoring and routing are already correct by the time the orchestration spine arrives in S02 to call them.
 
 ## Session S01 Scope
 
