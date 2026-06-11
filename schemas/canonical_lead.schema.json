@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CanonicalLeadRecord",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["lead_id", "idempotency_key", "received_at", "status", "source", "raw_submission", "normalized"],
+  "properties": {
+    "lead_id": { "type": "string" },
+    "idempotency_key": { "type": "string" },
+    "received_at": { "type": "string", "format": "date-time" },
+    "status": {
+      "type": "string",
+      "enum": ["received", "enriched", "scored", "routed", "inference_failed", "delivery_failed"]
+    },
+    "source": {
+      "type": "object",
+      "required": ["form_id"],
+      "properties": {
+        "form_id": { "type": "string" },
+        "form_name": { "type": "string" }
+      }
+    },
+    "raw_submission": { "type": "object" },
+    "normalized": {
+      "type": "object",
+      "required": ["name", "email"],
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "domain": { "type": "string" },
+        "company": { "type": ["string", "null"] },
+        "message": { "type": "string" }
+      }
+    },
+    "web_research": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["ok", "degraded"] },
+        "fetched_at": { "type": "string", "format": "date-time" },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "snippet": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "enrichment": {
+      "type": "object",
+      "properties": {
+        "company_size": { "type": "string" },
+        "industry": { "type": "string" },
+        "fit_signals": {
+          "type": "object",
+          "properties": {
+            "budget_indicated": {},
+            "timeline_urgency": { "type": "string" },
+            "decision_maker": {},
+            "use_case_clarity": { "type": "string" }
+          }
+        },
+        "summary": { "type": "string" },
+        "confidence": { "type": "number" },
+        "model": { "type": "string" },
+        "schema_version": { "type": "string" },
+        "repair_used": { "type": "boolean" },
+        "extracted_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "score": {
+      "type": "object",
+      "properties": {
+        "composite": { "type": "integer" },
+        "components": { "type": "object" },
+        "weights_version": { "type": "string" },
+        "scored_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "properties": {
+        "tier": { "type": "string" },
+        "actions": { "type": "array", "items": { "type": "string" } },
+        "routed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

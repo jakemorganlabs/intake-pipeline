@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LeadEnrichment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["company_size", "industry", "fit_signals", "summary", "confidence"],
+  "properties": {
+    "company_size": {
+      "type": "string",
+      "enum": ["solo", "small", "mid", "enterprise", "unknown"]
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "fit_signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["budget_indicated", "timeline_urgency", "decision_maker", "use_case_clarity"],
+      "properties": {
+        "budget_indicated": {
+          "type": ["boolean", "null"]
+        },
+        "timeline_urgency": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "unknown"]
+        },
+        "decision_maker": {
+          "type": ["boolean", "null"]
+        },
+        "use_case_clarity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 280
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

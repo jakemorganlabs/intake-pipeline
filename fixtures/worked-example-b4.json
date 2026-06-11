@@ -1,0 +1,23 @@
+{
+  "_header": "Synthetic data — any resemblance to a real organization is coincidental.",
+  "name": "Dana Reyes",
+  "email": "dreyes@northgate-medical.example",
+  "domain": "northgate-medical.example",
+  "company": "Northgate Medical Group",
+  "message": "Opening an 18,000 sq ft outpatient clinic in Q3. Need Cat6A throughout plus a small server room. Quote needed by end of month — budget is approved.",
+  "inference_output": {
+    "company_size": "mid",
+    "industry": "healthcare",
+    "fit_signals": {
+      "budget_indicated": true,
+      "timeline_urgency": "high",
+      "decision_maker": true,
+      "use_case_clarity": "high"
+    },
+    "summary": "Mid-size healthcare provider opening an 18k sqft clinic in Q3; needs Cat6A + server room; budget approved; quote within a month.",
+    "confidence": 0.86
+  },
+  "expected_composite": 96,
+  "expected_tier": "HOT",
+  "expected_actions": ["chat", "crm"]
+}

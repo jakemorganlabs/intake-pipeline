@@ -1,0 +1,28 @@
+{
+  "name": "intake-outbound-pipeline",
+  "version": "1.0.0",
+  "description": "Session S01 — Deterministic Core (MICT-PIPE-001)",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "migrate": "npx tsx src/db/migrate.ts",
+    "validate:schemas": "npx tsx scripts/validate-schemas.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "pg": "^8.12.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.22.4",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

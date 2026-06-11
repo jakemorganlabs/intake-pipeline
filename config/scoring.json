@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "weights": {
+    "size": 20,
+    "industry": 15,
+    "budget": 20,
+    "urgency": 15,
+    "decision_maker": 15,
+    "clarity": 15
+  },
+  "factors": {
+    "company_size": {
+      "enterprise": 1.0,
+      "mid": 0.8,
+      "small": 0.5,
+      "solo": 0.3,
+      "unknown": 0.2
+    },
+    "industry": {
+      "target": 1.0,
+      "adjacent": 0.6,
+      "off": 0.2,
+      "unknown": 0.3
+    },
+    "budget_indicated": {
+      "true": 1.0,
+      "false": 0.2,
+      "null": 0.4
+    },
+    "timeline_urgency": {
+      "high": 1.0,
+      "medium": 0.6,
+      "low": 0.3,
+      "unknown": 0.4
+    },
+    "decision_maker": {
+      "true": 1.0,
+      "false": 0.3,
+      "null": 0.4
+    },
+    "use_case_clarity": {
+      "high": 1.0,
+      "medium": 0.6,
+      "low": 0.2
+    }
+  }
+}
