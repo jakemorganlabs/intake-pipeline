@@ -1,71 +1,52 @@
----
-description: Resilience protocol — checkpointed, recoverable agent sessions
-alwaysApply: true
----
-
 # RESILIENCE PROTOCOL — follow on every task
 
 ## 1. WORK ORDERING (non-negotiable)
 - Apply file edits FIRST, before any explanation or discussion.
-- Never describe code you have not yet written to disk. Disk state is the
-  source of truth; chat text is commentary.
+- Never describe code you have not yet written to disk. Disk state is the source of truth; chat text is commentary.
 - If a step produces multiple files, write all of them before explaining any.
 
 ## 2. SESSION STATE FILE
-- Maintain `SESSION-STATE.md` at the repo root. Create it on the first
-  checkpoint if it does not exist.
-- At every checkpoint, APPEND a new checkpoint entry (never overwrite
-  history) and update the `## Current State` section at the top.
+- Maintain `SESSION-STATE.md` at the repo root. Create it on the first checkpoint if it does not exist.
+- At every checkpoint, APPEND a new checkpoint entry (never overwrite history) and update the `## Current State` section at the top.
 - `SESSION-STATE.md` format:
 
-  # SESSION STATE
-  ## Current State
-  - Task: <one line>
-  - Last checkpoint: <number + name>
-  - Branch: <git branch>
-  - Next step: <one line>
-  ## Checkpoint Log
-  <appended checkpoint entries, newest last>
+ # SESSION STATE
+ ## Current State
+ - Task: <one line>
+ - Last checkpoint: <number + name>
+ - Branch: <git branch>
+ - Next step: <one line>
+ ## Checkpoint Log
+ <appended checkpoint entries, newest last>
 
 ## 3. CHECKPOINT REQUIREMENT
-After completing any major step (a feature slice, a migration, a passing
-  test suite, a refactor unit), you MUST:
+After completing any major step (a feature slice, a migration, a passingtest suite, a refactor unit), you MUST:
 1. Update `SESSION-STATE.md` per the format above.
 2. Run `git add -A && git commit -m "[CKPT N] <short name>"`.
-   If the repo is not a git repo, run `git init` first and say so.
+ If the repo is not a git repo, run `git init` first and say so.
 3. End your chat response with this exact checkpoint block:
 
-   ## ✅ CHECKPOINT N — <Short Name>
-   **Completed:** <bullets>
-   **Status:** COMPLETE | PARTIAL (explain if partial)
-   **Files changed:** <paths, one-line purpose each>
-   **Verified by:** <command run + result, e.g. "pytest — 14 passed">
-   **Next step:** <one line>
+ ## ✅ CHECKPOINT N — <Short Name>
+ **Completed:** <bullets>
+ **Status:** COMPLETE | PARTIAL (explain if partial)
+ **Files changed:** <paths, one-line purpose each>
+ **Verified by:** <command run + result, e.g. "pytest — 14 passed">
+ **Next step:** <one line>
 
 ## 4. SCOPE BOUNDS (Kimi K2.6 long-run control)
-- Maximum ONE major step between checkpoints. Do not chain multiple
-  features, refactors, or migrations into a single uncommitted run.
-- If a step is growing beyond ~10 file edits or ~15 tool calls, cut a
-  PARTIAL checkpoint and continue.
-- Before any destructive operation (file deletion, schema drop,
-  force-push, dependency major-version bump), checkpoint first.
+- Maximum ONE major step between checkpoints. Do not chain multiple features, refactors, or migrations into a single uncommitted run.
+- If a step is growing beyond ~10 file edits or ~15 tool calls, cut a PARTIAL checkpoint and continue.
+- Before any destructive operation (file deletion, schema drop, force-push, dependency major-version bump), checkpoint first.
 
 ## 5. VERIFICATION BEFORE CHECKPOINT
-- A checkpoint marked COMPLETE must include at least one verification:
-  run the tests, run the build, execute the script, or hit the endpoint.
-- "It should work" is not verification. If you cannot verify, mark the
-  checkpoint PARTIAL and state what verification is pending.
+- A checkpoint marked COMPLETE must include at least one verification: run the tests, run the build, execute the script, or hit the endpoint.
+- "It should work" is not verification. If you cannot verify, mark the checkpoint PARTIAL and state what verification is pending.
 
 ## 6. RECOVERY BEHAVIOR
-- If the user says "Read SESSION-STATE.md and continue" (or similar):
-  read the file, read the `git log --oneline -10`, restate the current
-  state in 3 bullets, then resume from "Next step". Do not redo
-  completed work; trust the checkpoint log and verify with the repo.
-- If `SESSION-STATE.md` and the actual repo state disagree, trust the
-  repo, note the discrepancy, and correct the state file.
+- If the user says "Read SESSION-STATE.md and continue" (or similar): read the file, read the `git log --oneline -10`, restate the current state in 3 bullets, then resume from "Next step". Do not redo completed work; trust the checkpoint log and verify with the repo.
+- If `SESSION-STATE.md` and the actual repo state disagree, trust the repo, note the discrepancy, and correct the state file.
 
 ## 7. OUTPUT DISCIPLINE
 - Prefer complete file writes and verified edits over long prose.
 - Keep explanations brief; the checkpoint block is the summary.
-- Never paste full file contents into chat that already exist on disk —
-  reference paths instead.
+- Never paste full file contents into chat that already exist on disk — reference paths instead.

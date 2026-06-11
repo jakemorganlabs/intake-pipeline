@@ -1,7 +1,7 @@
 {
   "name": "intake-outbound-pipeline",
-  "version": "1.0.0",
-  "description": "Session S01 — Deterministic Core (MICT-PIPE-001)",
+  "version": "1.0.1",
+  "description": "Session S02 — Orchestration Spine (MICT-PIPE-001)",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -9,7 +9,10 @@
     "test:watch": "vitest",
     "lint": "tsc --noEmit",
     "migrate": "npx tsx src/db/migrate.ts",
-    "validate:schemas": "npx tsx scripts/validate-schemas.ts"
+    "validate:schemas": "npx tsx scripts/validate-schemas.ts",
+    "start": "npx tsx src/server.ts",
+    "smoke": "npx tsx scripts/smoke.ts",
+    "pipeline": "npx tsx src/cli.ts"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
@@ -24,5 +27,11 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.1",
+    "@hono/node-server": "^2.0.4",
+    "dotenv": "^17.4.2",
+    "hono": "^4.12.25"
   }
 }
