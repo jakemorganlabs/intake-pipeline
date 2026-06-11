@@ -1,10 +1,10 @@
 # SESSION STATE
 
 ## Current State
-- Task: Session S01 — Deterministic Core (MICT-PIPE-001)
+- Task: Session S02 — Orchestration Spine (MICT-PIPE-001)
 - Last checkpoint: CKPT 1 — Scaffold + Migrations + Schemas + Core + Tests + CI
 - Branch: main
-- Next step: Session S01 complete. Handoff to S02 — Orchestration Spine.
+- Next step: S02 handoff — begin n8n webhook + HMAC + normalizer; build through persistence + audit + smoke test
 
 ## Checkpoint Log
 
